@@ -20,7 +20,7 @@
             button(type='button', ng-click='kickDevice(device); $event.stopPropagation()', uib-tooltip='{{"Stop Using"|translate}}', tooltip-placement='bottom').btn.btn-sm.btn-danger-outline
               i.fa.fa-times
 
-          .device-name-container.pull-left(uib-dropdown)
+      //-    .device-name-container.pull-left(uib-dropdown) // comment because through this feature user is able to move control device page
             a.stf-vnc-device-name.pointer.unselectable(uib-dropdown-toggle)
               p
                 .device-small-image
