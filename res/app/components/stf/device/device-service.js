@@ -2,7 +2,7 @@ var oboe = require('oboe')
 var _ = require('lodash')
 var EventEmitter = require('eventemitter3')
 
-module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceService) {
+module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceService,$window) {
   var deviceService = {}
 
   function Tracker($scope, options) {
@@ -167,6 +167,7 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
 
     oboe('/api/v1/devices')
       .node('devices[*]', function(device) {
+        console.log("All device Call..");
         tracker.add(device)
       })
 
@@ -192,11 +193,54 @@ module.exports = function DeviceServiceFactory($http, socket, EnhanceDeviceServi
   deviceService.load = function(serial) {
     return $http.get('/api/v1/devices/' + serial)
       .then(function(response) {
+        console.log("responce ", response)
         return response.data.device
       })
+
+  }
+
+  deviceService.load1 = function(serial) {
+    console.log("On device page load");
+
+    return $http.get('/api/v1/devices/' + serial)
+      .success(function(response) {
+        console('Sucess');
+          return response;
+      })
+      .error(function(){
+        console.log('Failuer')
+        $window.location.href = 'https://www.amazon.in/';
+      })
+    
+
+     // console.log("1->", response);
+
+      /*
+          
+          console.log("2->", response.error);
+          console.log("3->", response["$$state"]);    
+          var test = response["$$state"];
+          console.log("4->", test.status);    
+          console.log("5->", test["status"]);    
+          console.log("6->", test[0]);    
+          console.log("7->", response["d"].status);    
+          console.log("8->", response["$$state"].processScheduled);    
+          console.log("9->", response["$$state"]["processScheduled"]);    
+          console.log("10->", response["$$state"].value);    
+          */
+
+        response = new Promise(function(resolve, reject) {
+          //resolve("done");
+        
+          reject(new Error("…")); // ignored
+          //setTimeout(() => resolve("…")); // ignored
+            });
+
+          return response;
   }
 
   deviceService.get = function(serial, $scope) {
+    console.log("deviceService Calling ........");
     var tracker = new Tracker($scope, {
       filter: function(device) {
         return device.serial === serial

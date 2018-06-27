@@ -22,7 +22,9 @@ require.ensure([], function(require) {
       $locationProvider.hashPrefix('!')
       $routeProvider
         .otherwise({
-          redirectTo: '/devices'
+          redirectTo: function(routeParams) {
+            window.location = 'http://appscancloud.com/contact-us.php?error=Device has some issue kindly contact to adminstator';
+        }
         })
     })
 
