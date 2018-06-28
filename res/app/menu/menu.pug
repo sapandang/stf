@@ -1,6 +1,6 @@
 .navbar.stf-menu(ng-controller='MenuCtrl')
   .container-fluid.stf-top-bar
-    a.stf-logo(ng-href="/#!/devices") STF
+    a.stf-logo() 
     ul.nav.stf-nav(nav-menu='current').unselectable
       li(ng-cloak)
         a(ng-href='/#!/control/{{lastUsedDevice}}', ng-show='lastUsedDevice')
@@ -15,7 +15,7 @@
           button(type='button', ng-model='$root.platform', uib-btn-radio="'web'", translate).btn.btn-sm.btn-default-outline Web
           button(type='button', ng-model='$root.platform', uib-btn-radio="'native'", translate).btn.btn-sm.btn-default-outline Native
 
-      li(ng-show='!$root.basicMode')
+      //-li(ng-show='!$root.basicMode')
         a(ng-href='/#!/help', accesskey='6')
           i.fa.fa-question-circle.fa-fw
           | {{ "Help" | translate }}
