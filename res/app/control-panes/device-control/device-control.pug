@@ -17,7 +17,7 @@
             button(type='button', ng-model='showScreen', uib-btn-checkbox).btn.btn-xs.btn-info
               i(ng-show='showScreen', uib-tooltip='{{"Hide Screen"|translate}}', tooltip-placement='bottom').fa.fa-eye
               i(ng-show='!showScreen', uib-tooltip='{{"Show Screen"|translate}}', tooltip-placement='bottom').fa.fa-eye-slash
-            button(type='button', ng-click='kickDevice(device); $event.stopPropagation()', uib-tooltip='{{"Stop Using"|translate}}', tooltip-placement='bottom').btn.btn-sm.btn-danger-outline
+            button(type='button', id = 'stopUsing' ng-click='kickDevice(device); $event.stopPropagation()', uib-tooltip='{{"Stop Using"|translate}}', tooltip-placement='bottom').btn.btn-sm.btn-danger-outline
               i.fa.fa-times
 
       //-    .device-name-container.pull-left(uib-dropdown) // comment because through this feature user is able to move control device page
@@ -57,3 +57,6 @@
               i.fa.fa-square-o
             a(device-control-key='back', title='{{"Back"|translate}}').btn.btn-primary.btn-lg.no-transition
               i.fa.fa-mail-reply
+
+ <script>             
+</script>

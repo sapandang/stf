@@ -1,3 +1,5 @@
+
+
 var _ = require('lodash')
 
 module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
@@ -9,8 +11,20 @@ module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
 
   $scope.groupDevices = $scope.groupTracker.devices
 
+
+  var timeout = window.GLOBAL_APPSTATE.time *1000;
+  setTimeout(function(){
+    $scope.kickDevice($scope.device);
+    console.log('navigate to google .com')
+    $window.location.href = 'http://www.google.co.in/';
+  }, timeout)
+
+  
+
   $scope.kickDevice = function(device) {
 
+    
+    console.log('device :::: ' , device);
     if (!device || !$scope.device) {
       alert('No device found')
       return
@@ -51,6 +65,7 @@ module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
   }
 
   $scope.controlDevice = function(device) {
+    console.log('on load ', device);
     $location.path('/control/' + device.serial)
   }
 
